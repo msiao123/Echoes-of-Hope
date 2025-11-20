@@ -10,8 +10,8 @@
   "name":"obj_Day2",
   "overriddenProperties":[],
   "parent":{
-    "name":"Days Indicator",
-    "path":"folders/Objects/Days Indicator.yy",
+    "name":"Day 2",
+    "path":"folders/Objects/Story/Day 2.yy",
   },
   "parentObjectId":null,
   "persistent":false,

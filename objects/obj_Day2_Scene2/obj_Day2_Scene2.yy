@@ -10,8 +10,8 @@
   "name":"obj_Day2_Scene2",
   "overriddenProperties":[],
   "parent":{
-    "name":"Second Day",
-    "path":"folders/Objects/Story/Second Day.yy",
+    "name":"Day 2",
+    "path":"folders/Objects/Story/Day 2.yy",
   },
   "parentObjectId":null,
   "persistent":false,

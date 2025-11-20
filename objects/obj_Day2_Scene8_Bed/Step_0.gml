@@ -13,6 +13,6 @@ if (place_meeting(x, y - 10, obj_MC)) {
 if (player_is_close && keyboard_check_pressed(ord("E"))) {
     
     // Go to the specified room.
-    room_goto(room_Day2_Scene2);
+    room_goto(room_Day3);
 }
 
