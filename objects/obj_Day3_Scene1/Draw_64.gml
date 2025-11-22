@@ -12,16 +12,22 @@ if (fade_alpha > 0) {
 var gui_w = display_get_gui_width();
 var gui_h = display_get_gui_height();
 var margin = 40;
-var text_x = margin;
-var text_y = gui_h - 160;
-var text_w = gui_w - (margin * 2);
-var dialogue_height = 100;
+
+// *** MODIFIED SECTION START ***
+// I moved the text higher up (260 instead of 160) to make room for a taller box
+var text_x = margin + 250; // Increased spacing (250) for the larger portrait
+var text_y = gui_h - 230;  
+var text_w = gui_w - (margin * 2) - 250; // Adjusted width math to match new spacing
+var dialogue_height = 150 // DOUBLED the height (was 100)
+// *** MODIFIED SECTION END ***
 
 // =================================================================
-// --- RESTORED: Dialogue Box Drawing ---
+// --- Dialogue Box Drawing ---
 // =================================================================
 if (global.dialogue_visible) {
-    // Set default alignment for dialogue
+    // ✅ SET THE FONT HERE
+    draw_set_font(font_Dialogue);
+    
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
     
@@ -31,6 +37,31 @@ if (global.dialogue_visible) {
     draw_rectangle(text_x - 10, text_y - 30, text_x + text_w + 10, text_y + dialogue_height, false);
     draw_set_alpha(1);
 
+    // Draw portrait only if there's a valid sprite
+    if (portrait_sprite != -1) {
+        var portrait_x = margin;
+        // Adjusted portrait Y to align better with the new taller box
+        var portrait_y = text_y - 20; 
+        
+        // *** INCREASED PORTRAIT SIZE ***
+        var portrait_size = 185; // Increased from 140 to fill the new box
+
+        var spr_w = sprite_get_width(portrait_sprite);
+        var spr_h = sprite_get_height(portrait_sprite);
+
+        draw_sprite_ext(
+            portrait_sprite,
+            0,
+            portrait_x,
+            portrait_y,
+            portrait_size / spr_w,
+            portrait_size / spr_h,
+            0,
+            c_white,
+            1
+        );
+    }
+
     // Draw speaker name
     if (dialogue_speaker != "") {
         draw_set_color(c_yellow);
@@ -39,12 +70,13 @@ if (global.dialogue_visible) {
 
     // Draw wrapped dialogue text
     draw_set_color(c_white);
-    draw_text_ext(text_x, text_y, displayed_text, -1, text_w);
+    draw_text_ext(text_x, text_y + 10, displayed_text, -1, text_w); // Added +10 to Y for better spacing
 
     // Prompt to continue when typing is finished
     if (typewriter_index >= string_length(current_dialogue)) {
         draw_set_color(c_gray);
-        draw_text(gui_w - 170, gui_h - 50, "[Press SPACE]");
+        // Moved the prompt down slightly to fit the new box height
+        draw_text(gui_w - 170, text_y + dialogue_height - 30, "[Press SPACE]");
     }
 }
 
@@ -52,24 +84,24 @@ if (global.dialogue_visible) {
 // --- Draw Choices (Bottom-Center Position) ---
 // =================================================================
 if (choice_active) {
+    draw_set_font(font_Dialogue);
+
     var box_width = 500;
     var option_count = array_length(choice_options);
     var line_height = 40;
     var box_padding = 20;
     var box_height = (option_count * line_height) + (box_padding * 2);
 
-    // Calculate the bottom-center position
     var bottom_margin = 40;
     var box_x = (gui_w / 2) - (box_width / 2);
-    var box_y = gui_h - box_height - bottom_margin;
-     
-    // Draw the background box
+    // Adjusted choice box to appear ABOVE the dialogue box if needed, or stick to bottom
+    var box_y = gui_h - box_height - bottom_margin; 
+    
     draw_set_color(c_black);
     draw_set_alpha(0.8);
     draw_rectangle(box_x, box_y, box_x + box_width, box_y + box_height, false);
     draw_set_alpha(1);
     
-    // Draw the options
     draw_set_halign(fa_center);
     draw_set_valign(fa_top);
     
@@ -88,3 +120,8 @@ if (choice_active) {
         draw_text(text_x_pos, text_y_pos, option_text);
     }
 }
+
+// =================================================================
+// --- RESET FONT ---
+// =================================================================
+draw_set_font(-1);

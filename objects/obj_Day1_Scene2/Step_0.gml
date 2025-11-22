@@ -91,13 +91,38 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
     global.dialogue_visible = false;
     dialogue_stage = 7;
 } else if (dialogue_stage == 7 && !global.dialogue_visible) {
+    dialogue_stage = 8;
     dialogue_speaker = "Inner thought";
     current_dialogue = "I head out the door with my chest feeling tight and heavy.";
     portrait_sprite = 0;
     global.dialogue_visible = true;
     reset_typewriter();
-} else if (dialogue_stage == 7 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
+} else if (dialogue_stage == 8 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
+    global.dialogue_visible = false;
+    dialogue_stage = 9;
+} else if (dialogue_stage == 9) {
+	with (obj_MC) {
+        target_x = 576;
+        target_y = 368;
+        is_moving_automatically = true;
+    }
+    dialogue_stage = 10;
+} else if (dialogue_stage == 10 && !obj_MC.is_moving_automatically) {
+	with (obj_MC) {
+        target_x = 400;
+        target_y = self.y;
+        is_moving_automatically = true;
+    }
+    dialogue_stage = 11;
+} else if (dialogue_stage == 11 && !obj_MC.is_moving_automatically) {
+	with (obj_MC) {
+        target_x = self.x;
+        target_y = 432;
+        is_moving_automatically = true;
+    }
+    dialogue_stage = 12;
+} else if (dialogue_stage == 12 && !global.dialogue_visible && !obj_MC.is_moving_automatically) {
     global.dialogue_visible = false;
     global.cutscene_active = false;
-    instance_destroy();
+    room_goto(room_Day1_Scene3);
 }

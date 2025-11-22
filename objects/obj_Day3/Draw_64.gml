@@ -1,4 +1,4 @@
-var txt = "DAY 3: \"Morning Light\"";
+var txt = "DAY 3";
 
 draw_set_font(-1); // use built-in default font
 draw_set_color(c_white);

@@ -53,7 +53,7 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
     dialogue_stage = 3;
 } else if (dialogue_stage == 3) {
     with (obj_Casey) {
-        target_x = 414;
+        target_x = obj_MC.x - 50;
         target_y = self.y;
         is_moving_automatically = true;
     }

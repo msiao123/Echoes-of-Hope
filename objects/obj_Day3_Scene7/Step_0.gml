@@ -115,36 +115,30 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
     portrait_sprite = 0;
     reset_typewriter();
 } else if (dialogue_stage == 13 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
-    dialogue_stage = 14;
-    dialogue_speaker = "Inner thought";
-    current_dialogue = "I retreat to my room soon after, closing the door quietly.";
-    portrait_sprite = 0;
-    reset_typewriter();
-} else if (dialogue_stage == 14 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     global.dialogue_visible = false;
-    dialogue_stage = 15;
-} else if (dialogue_stage == 15) {
+    dialogue_stage = 14;
+} else if (dialogue_stage == 14) {
     with (obj_MC) {
         target_x = self.x;
         target_y = 368;
         is_moving_automatically = true;
     }
-    dialogue_stage = 16;
-} else if (dialogue_stage == 16 && !obj_MC.is_moving_automatically) {
+    dialogue_stage = 15;
+} else if (dialogue_stage == 15 && !obj_MC.is_moving_automatically) {
     with (obj_MC) {
         target_x = 576;
         target_y = self.y;
         is_moving_automatically = true;
     }
-    dialogue_stage = 17;
-} else if (dialogue_stage == 17 && !obj_MC.is_moving_automatically) {
+    dialogue_stage = 16;
+} else if (dialogue_stage == 16 && !obj_MC.is_moving_automatically) {
     with (obj_MC) {
         target_x = 608;
         target_y = 304;
         is_moving_automatically = true;
     }
-    dialogue_stage = 18;
-} else if (dialogue_stage == 18 && !global.dialogue_visible && !obj_MC.is_moving_automatically) {
+    dialogue_stage = 17;
+} else if (dialogue_stage == 17 && !global.dialogue_visible && !obj_MC.is_moving_automatically) {
     global.cutscene_active = false;
     room_goto(room_Day3_Scene8)
 }

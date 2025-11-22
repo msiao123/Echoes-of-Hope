@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_Default",
-    "path":"sprites/spr_Default/spr_Default.yy",
+    "name":"spr_Bed",
+    "path":"sprites/spr_Bed/spr_Bed.yy",
   },
   "spriteMaskId":null,
   "visible":true,

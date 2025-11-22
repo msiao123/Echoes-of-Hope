@@ -60,12 +60,18 @@ if (global.dialogue_visible) {
 
 // Dialogue
 if (dialogue_stage == 0 && !global.dialogue_visible) {
-    dialogue_speaker = "Inner thought";
-    current_dialogue = "Even if nothing changes, just having a moment to breathe feels like enough.";
+	dialogue_speaker = "Inner thought";
+    current_dialogue = "I head to my room, close the door gently, and sit on the bed, letting the weight of the day settle over me.";
     portrait_sprite = 0;
     global.dialogue_visible = true;
-    reset_typewriter();
+    reset_typewriter()
 } else if (dialogue_stage == 0 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
+	dialogue_stage = 1;
+	dialogue_speaker = "Inner thought";
+    current_dialogue = "Even if nothing changes, just having a moment to breathe feels like enough.";
+    portrait_sprite = 0;
+    reset_typewriter();
+} else if (dialogue_stage == 1 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     global.dialogue_visible = false;
     global.cutscene_active = false;
     instance_destroy();

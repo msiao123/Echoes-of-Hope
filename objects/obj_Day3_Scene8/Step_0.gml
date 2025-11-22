@@ -31,18 +31,24 @@ if (global.dialogue_visible) {
 
 // Dialogue
 if (dialogue_stage == 0 && !global.dialogue_visible) {
-    dialogue_speaker = "Inner thought";
-    current_dialogue = "Day 3 ends heavy.";
+	dialogue_speaker = "Inner thought";
+    current_dialogue = "I retreat to my room soon after, closing the door quietly. My chest feels full—of fear, confusion, anger, and something else I can’t name.";
     portrait_sprite = 0;
-    global.dialogue_visible = true;
+	global.dialogue_visible = true;
     reset_typewriter();
 } else if (dialogue_stage == 0 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     dialogue_stage = 1;
+	dialogue_speaker = "Inner thought";
+    current_dialogue = "This day ends heavy.";
+    portrait_sprite = 0;
+    reset_typewriter();
+} else if (dialogue_stage == 1 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
+    dialogue_stage = 2;
     dialogue_speaker = "Inner thought";
     current_dialogue = "But at least… I’m not imagining things anymore.";
     portrait_sprite = 0;
     reset_typewriter();
-} else if (dialogue_stage == 1 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
+} else if (dialogue_stage == 2 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     global.dialogue_visible = false;
     global.cutscene_active = false;
     instance_destroy();

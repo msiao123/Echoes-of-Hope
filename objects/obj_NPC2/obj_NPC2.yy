@@ -1,9 +1,7 @@
 {
   "$GMObject":"",
   "%Name":"obj_NPC2",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":{"name":"obj_MC","path":"objects/obj_MC/obj_MC.yy",},"eventNum":0,"eventType":4,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"obj_NPC2",
   "overriddenProperties":[],

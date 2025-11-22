@@ -33,12 +33,12 @@ if (global.dialogue_visible) {
 if (dialogue_stage == 0 && !global.dialogue_visible) {
     dialogue_speaker = "Inner thought";
     current_dialogue = "I wake up before my alarm.";
-    portrait_sprite = -1;
+    portrait_sprite = 0;
     global.dialogue_visible = true;
 } else if (dialogue_stage == 0 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     dialogue_stage = 1;
     dialogue_speaker = "Inner thought";
-    current_dialogue = "Not because I’m rested. But because of the shouting.";
+    current_dialogue = "Not because I'm rested. But because of the shouting.";
     portrait_sprite = 0;
     reset_typewriter();
 } else if (dialogue_stage == 1 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
@@ -50,7 +50,7 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
 } else if (dialogue_stage == 2 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     dialogue_stage = 3;
     dialogue_speaker = "Dad";
-    current_dialogue = "Oh, right because you’re always so perfect!";
+    current_dialogue = "Oh, right because you're always so perfect!";
 	portrait_sprite = 0;
     reset_typewriter();
 } else if (dialogue_stage == 3 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
@@ -79,6 +79,17 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
     reset_typewriter();
 } else if (dialogue_stage == 7 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     global.dialogue_visible = false;
+    dialogue_stage = 8;
+} else if (dialogue_stage == 8) {
+    // Trigger MC Movement
+    with (obj_MC) {
+        target_x = self.x;
+        target_y = 416;
+        is_moving_automatically = true;
+    }
+    dialogue_stage = 9;
+} else if (dialogue_stage == 9 && !global.dialogue_visible && !obj_MC.is_moving_automatically) {
+    global.dialogue_visible = false;
     global.cutscene_active = false;
-	instance_destroy();
+    room_goto(room_Day1_Scene2);
 }

@@ -55,7 +55,7 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
 } else if (dialogue_stage == 3 && !obj_Teacher.is_moving_automatically) {
     with (obj_Teacher) {
         target_x = self.x;
-        target_y = obj_MC.y;
+        target_y = obj_MC_BackIdle.y;
         is_moving_automatically = true;
     }
     dialogue_stage = 4;

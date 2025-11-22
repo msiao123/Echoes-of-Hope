@@ -77,7 +77,7 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
         is_moving_automatically = true;
     }
     dialogue_stage = 7;
-} else if (dialogue_stage == 7 && !global.dialogue_visible && !obj_MC.is_moving_automatically) {
+} else if (dialogue_stage == 7 && !global.dialogue_visible && !obj_Teacher.is_moving_automatically) {
     dialogue_stage = 8;
     dialogue_speaker = "Teacher";
     current_dialogue = "Lia?";
@@ -152,5 +152,5 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
 } else if (dialogue_stage == 16 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     global.dialogue_visible = false;
     global.cutscene_active = false;
-    room_goto(room_Day3_Scene55);
+    room_goto(room_Day3_Scene6);
 }

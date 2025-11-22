@@ -1,18 +1,14 @@
 // In obj_interactive_door -> Step Event
 
-// First, check if the player object is colliding with this door.
-// We use place_meeting, which is a common way to check for collisions.
-if (place_meeting(x, y - 10, obj_MC)) {
+// Check distance between the door and the player (in pixels)
+// < 30 means "if the player is within 30 pixels of this door"
+if (distance_to_object(obj_MC) < 30) {
     player_is_close = true;
 } else {
     player_is_close = false;
 }
 
-// Now, if the player IS close and they press the 'E' key...
-// keyboard_check_pressed ensures this only fires once per key press.
+// If player is close AND presses E
 if (player_is_close && keyboard_check_pressed(ord("E"))) {
-    
-    // Go to the specified room.
     room_goto(room_Day4);
 }
-

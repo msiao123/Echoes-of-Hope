@@ -52,5 +52,5 @@ if (dialogue_stage == 0 && !global.dialogue_visible) {
 } else if (dialogue_stage == 3 && keyboard_check_pressed(vk_space) && typewriter_index >= string_length(current_dialogue)) {
     global.dialogue_visible = false;
     global.cutscene_active = false;
-    room_goto(room_Day2_Scene1);
+    room_goto(room_Day2);
 }
